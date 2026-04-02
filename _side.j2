@@ -1,0 +1,26 @@
+{% from "macros.j2" import render_social_icons %}
+
+<aside class="side">
+  <div class="inner">
+    {% if site.logo %}
+      <a class="side_logo" href="{{ linkify('/') }}"><img src="{{ site.logo.src|thumbnail('ss') }}" alt="{{ site.name }}" width="120" height="120"></a>
+    {% endif %}
+    <h1 class="side_title"><a class="h-card" rel="me" href="{{ linkify('/') }}">{{ site.name }}</a></h1>
+    {% if site.summary %}
+      <h2 class="side_subtitle">{{ site.summary }}</h2>
+    {% endif %}
+    {% if site.primary_links %}
+      <ul class="side_links">
+        {% for nav in site.primary_links %}
+          <li><a href="{{ nav.url }}" {% if nav.blank %} target="_blank"{% endif %}>{{ nav.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <nav class="side_social">
+      {{ render_social_icons(site, site.socials.email) }}
+    </nav>
+    <div class="side_search">
+      <input class="js-search" type="text" placeholder="Search...">
+    </div>
+  </div>
+</aside>
